@@ -6,7 +6,7 @@ int greenLEDPin = 3;
 
 int buttonState = 0;
 
-int ledSwitch = 1;
+int activeLED = -1;
 
 
 void setup() {
@@ -20,6 +20,8 @@ void setup() {
   // Use Arduinos internal pull-up resistor
   digitalWrite(buttonPin, HIGH);
 
+  activeLED = -1;
+
 }
 
 void loop() {
@@ -27,11 +29,14 @@ void loop() {
   buttonState = digitalRead(buttonPin);
   // Conditional if statement
   if ( buttonState == LOW ) {
-    for ( int i = 0; i <= 3; i++ ) {
-      digitalWrite(i, HIGH);
-      delay(500);
-      digitalWrite(i, LOW);
+    digitalWrite(activeLED, LOW);
+    activeLED++;
+    if (activeLED < 4) {
+      digitalWrite(activeLED, HIGH);
+    } else {
+      activeLED = -1;
     }
+    delay(500);
   }
 
 }
