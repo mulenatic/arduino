@@ -20,8 +20,6 @@ void setup() {
   // Use Arduinos internal pull-up resistor
   digitalWrite(buttonPin, HIGH);
 
-  activeLED = -1;
-
 }
 
 void loop() {
@@ -34,9 +32,17 @@ void loop() {
     if (activeLED < 4) {
       digitalWrite(activeLED, HIGH);
     } else {
-      activeLED = -1;
+      if (activeLED == 4 ) {
+       for (int i = 0; i < 4; i++ ){
+        digitalWrite(i, HIGH);
+       }
+      } else {
+        activeLED = -1;
+        for (int i = 0; i < 4; i++ ){
+          digitalWrite(i, LOW);
+        }
+      }
     }
     delay(500);
   }
-
 }
