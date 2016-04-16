@@ -27,16 +27,11 @@ void loop() {
   buttonState = digitalRead(buttonPin);
   // Conditional if statement
   if ( buttonState == LOW ) {
-    // Change led mode
-    digitalWrite(whiteLEDPin, HIGH);
-    digitalWrite(blueLEDPin, HIGH);
-    digitalWrite(redLEDPin, HIGH);
-    digitalWrite(greenLEDPin, HIGH);
-  } else {
-    digitalWrite(whiteLEDPin, LOW);
-    digitalWrite(blueLEDPin, LOW);
-    digitalWrite(redLEDPin, LOW);
-    digitalWrite(greenLEDPin, LOW);
+    for ( int i = 0; i <= 3; i++ ) {
+      digitalWrite(i, HIGH);
+      delay(500);
+      digitalWrite(i, LOW);
+    }
   }
 
 }
