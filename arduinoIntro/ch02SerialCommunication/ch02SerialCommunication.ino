@@ -10,15 +10,28 @@ void setup() {
 void loop() {
   if (Serial.available() > 0) {
     int command = Serial.read();
-    if ( command == '1') {
-      digitalWrite(LED_PIN, HIGH);
-      Serial.println("LED on");
-    } else if ( command == '2') {
-      digitalWrite(LED_PIN, LOW);
-      Serial.println("LED off");
-    } else {
-      Serial.print("Unknown commad: ");
-      Serial.println(command);
+    switch (command) {
+      case '1':
+        digitalWrite(LED_PIN, HIGH);
+        Serial.println("LED on");
+        break;
+      case '2':
+        digitalWrite(LED_PIN, LOW);
+        Serial.println("LED off");
+        break;
+      case '3':
+        Serial.println("LED blinking");
+        for ( int i = 0; i < 10; i++ ) {
+          digitalWrite(LED_PIN, HIGH);
+          delay(100);
+          digitalWrite(LED_PIN, LOW);
+          delay(100);
+        }
+        break;
+      default:
+        Serial.print("Unknown commad: ");
+        Serial.println(command);
+        break;
     }
   }
 
